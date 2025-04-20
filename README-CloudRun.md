@@ -27,7 +27,7 @@ DEPLOY CODINGAN KE CLOUD RUN
    - gcloud run deploy flask-app   --image gcr.io/mlpt-cloudteam-migration/flask-app   --platform managed   --region asia-southeast2   --allow-unauthenticated
    - [Nanti akan muncul url dari cloud run]
   
-5. Update repository
+5. Buat repository baru
    - gcloud builds submit --tag gcr.io/mlpt-cloudteam-migration/hict-team
    - gcloud run deploy hict-team   --image gcr.io/mlpt-cloudteam-migration/hict-team   --platform managed   --region asia-southeast2   --allow-unauthenticated
    - [Nanti akan muncul url dari cloud run]
