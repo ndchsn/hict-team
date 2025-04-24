@@ -1,15 +1,14 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args:
-      [
-        'build',
-        '-t',
-        'gcr.io/mlpt-cloudteam-migration/hict-team',
-        '.'
-      ]
+    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/cicdtes', '.']
 
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/mlpt-cloudteam-migration/hict-team']
-
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args: [
+      'gcloud', 'run', 'deploy', 'cicdtes',
+      '--image', 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/cicdtes',
+      '--region', 'asia-southeast2',
+      '--platform', 'managed',
+      '--allow-unauthenticated'
+    ]
 images:
-  - 'gcr.io/mlpt-cloudteam-migration/hict-team'
+  - 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/cicdtes'
