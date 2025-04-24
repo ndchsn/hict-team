@@ -1,0 +1,44 @@
+1. Pastikan codingannya sudah ada (html, css, app.py, Dockerfile, requirements.txt, dll)
+2. Connect ke github
+   - git init
+   - git remote add origin https://github.com/ndchsn/hict-team.git
+   - git remote -v (pastikan berada di branch main, kalau belum bisa "git branch -M main")
+3. Buat file cloudbuild.yaml di lokal, contoh script:
+
+       steps:
+      - name: 'gcr.io/cloud-builders/docker'
+        args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/cicdtes', '.']
+    
+      - name: 'gcr.io/cloud-builders/docker'
+        args: ['push', 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/cicdtes']
+    
+      - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+        args: [
+          'gcloud', 'run', 'deploy', 'cicdtes',
+          '--image', 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/cicdtes',
+          '--region', 'asia-southeast2',
+          '--platform', 'managed',
+          '--allow-unauthenticated'
+        ]
+    images:
+      - 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/cicdtes'
+
+4. ke console GCP > Cloud Build > Create Trigger:
+   - Name = team-trigger
+   - Region = asia-southeast2
+   - Event : Push to a branch
+   - Source : 1st gen
+   - Repository = (github > hict-team repository) = kalau ada keperluan buat authenticate / authorization gas aja
+   - Branch = ^main$
+   - Configuration Type : Cloud Build configuration file (yaml or json)
+   - Location = Repository (/cloudbuild.yaml)
+   - Create
+
+5. Cloud Build > Dashboard (Cek build nya berhasil atau tidak)
+6. Cloud Run > Open URL
+
+6. Kalau ada update codingan
+   - git add .
+   - git commit -M "komen update"
+   - git push -u origin main
+   - cek dashboard Cloud Build lagi
