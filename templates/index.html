@@ -79,12 +79,14 @@
   </form>
   
   {% if lat and lng %}
-    <p>Lokasi: {{ location }}</p>
-    <p>Latitude: {{ lat }}</p>
-    <p>Longitude: {{ lng }}</p>
+  <p>Lokasi: {{ location }}</p>
+  <p>Latitude: {{ lat }}</p>
+  <p>Longitude: {{ lng }}</p>
+  <p><a href="https://www.google.com/maps?q={{ lat }},{{ lng }}" target="_blank">Lihat di Google Maps</a></p>
   {% elif error %}
     <p style="color:red">{{ error }}</p>
   {% endif %}
+
   
 </body>
 </html>
