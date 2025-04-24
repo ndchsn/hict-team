@@ -1,0 +1,18 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/hict-team', '.']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    args:
+      - 'gcloud'
+      - 'run'
+      - 'deploy'
+      - 'hict-team'
+      - '--image'
+      - 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/hict-team'
+      - '--region'
+      - 'asia-southeast2'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+images:
+  - 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/hict-team'
