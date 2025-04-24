@@ -82,7 +82,12 @@
   <p>Lokasi: {{ location }}</p>
   <p>Latitude: {{ lat }}</p>
   <p>Longitude: {{ lng }}</p>
-  <p><a href="https://www.google.com/maps?q={{ lat }},{{ lng }}" target="_blank">Lihat di Google Maps</a></p>
+  <p>
+    <a href="https://www.google.com/maps?q={{ lat }},{{ lng }}" target="_blank">
+      <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/googlemaps.svg" alt="Google Maps" width="20" style="vertical-align: middle; margin-right: 5px;" />
+      Lihat di Google Maps
+    </a>
+  </p>
   {% elif error %}
     <p style="color:red">{{ error }}</p>
   {% endif %}
