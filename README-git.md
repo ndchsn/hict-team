@@ -24,7 +24,8 @@ Push di Github:
 4. Kalau ada update codingan
    - git add .
    - git commit -m "update message"
-   - git push
+   - git pull origin main --rebase
+   - git push origin main
    - [PASTIKAN DIREKTORI PATH SELALU DI FOLDER CODINGAN]
   
 OPTIONAL
