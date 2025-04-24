@@ -2,6 +2,9 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/cicdtes', '.']
 
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia-southeast2-docker.pkg.dev/mlpt-cloudteam-migration/cloud-run-source-deploy/cicdtes']
+
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     args: [
       'gcloud', 'run', 'deploy', 'cicdtes',
