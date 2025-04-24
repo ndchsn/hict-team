@@ -72,5 +72,19 @@
       </div>
     </div>
   </div>
+  
+  <form action="/geocode" method="POST">
+    <input type="text" name="location" placeholder="Masukkan lokasi (contoh: Jakarta)" required>
+    <button type="submit">Cari Koordinat</button>
+  </form>
+  
+  {% if lat and lng %}
+    <p>Lokasi: {{ location }}</p>
+    <p>Latitude: {{ lat }}</p>
+    <p>Longitude: {{ lng }}</p>
+  {% elif error %}
+    <p style="color:red">{{ error }}</p>
+  {% endif %}
+  
 </body>
 </html>
