@@ -12,7 +12,6 @@ steps:
       '--region', 'asia-southeast2',
       '--platform', 'managed',
       '--allow-unauthenticated',
-      '--set-env-vars', 'GOOGLE_API_KEY=AIzaSyBcDlqd7-WcYffL6iT9ysTvoutf7Dtz_zY'
     ]
 
 images:
